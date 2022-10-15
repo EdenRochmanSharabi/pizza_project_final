@@ -22,6 +22,7 @@ public class Controller {
 
         while(resultados.next()){
             System.out.println(resultados.getString("name"));
+            System.out.println("test");
         }
 
     }
