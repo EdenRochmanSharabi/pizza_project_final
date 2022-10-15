@@ -4,26 +4,25 @@ import java.sql.*;
 
 public class Controller {
 
-    public static Connection con;
-    public static Statement statement;
-
-    static {
-        try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizza_final", "root", "");
-            statement = con.createStatement();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[]args) throws SQLException{
 
-        ResultSet resultados = statement.executeQuery("SELECT * FROM Pizzas");
+        SQL_Constants sql = new SQL_Constants();
+        Conexion conexion = new Conexion();
+        Statement statement = conexion.getStatement();
+
+        ResultSet resultados = statement.executeQuery(sql.SELECT_INGRIDIENTS_ALL);
+
+        Records records = new Records();
+
+
 
         while(resultados.next()){
-            System.out.println(resultados.getString("name"));
-            System.out.println("test");
+            //System.out.println(resultados.getString(2));
+            records.setRecord((Integer) resultados.getInt(1), resultados.getString(3));
         }
+        System.out.println(records.toString());
+
 
     }
 
