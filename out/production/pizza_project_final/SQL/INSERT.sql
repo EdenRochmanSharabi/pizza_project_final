@@ -1,0 +1,1 @@
+INSERT INTO Pizzas VALUES(1, 'Margarita', 10, false);
